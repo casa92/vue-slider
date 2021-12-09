@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- MILESTONE 1
+    Per prima cosa, creiamo il markup statico: costruiamo il container e inseriamo l'immagine grande a sinistra e le thumbnails sulla destra in modo da poter stilare lo slider; avremo così la struttura base e gli stili pronti per poterci poi concentrare solamente sull'aspetto logico. -->
+
+    <div id="root">
+        <div class="app_container">
+            <div v-on:mouseover="stopAutoPlay" v-on:mouseleave="restartAutoPlay" class="slider">
+                <!-- big image -->
+                <div class="big_image_container">
+                    <div class="single_big_image">
+                        <img :src="slides[currentActiveSlide].image" alt="slides[currentActiveSlide].title">
+                        
+                        <div class="image_text active">
+                            <div class="title">
+                                <h2>{{ slides[currentActiveSlide].title }}</h2>
+                            </div>
+                            <div class="text">
+                                {{ slides[currentActiveSlide].text }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- image gallery -->
+                <div class="image_selection">
+              
+                    <div @click="showPrevSlider()" class="arrow arrow_top">
+                        <i class="fas fa-angle-up"></i>
+                    </div>
+                    <div @click="showNextSlider()" class="arrow arrow_bottom">
+                        <i class="fas fa-angle-down"></i>
+                    </div>
+
+                    <div @click="showThisSlide(index)" v-for="element, index in slides" class="single_selection_image" :class="{ 'active': index === currentActiveSlide }">
+                        <img :src="element.image" :alt="element.title">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
